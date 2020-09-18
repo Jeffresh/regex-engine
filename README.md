@@ -64,6 +64,8 @@ If none of the above apply, the recursion should continue until the regex-string
 
 This logic can be illustrated as follows:
 
+![recursive-scheme](/assets/recursive-scheme.png)
+
 Note that some of the steps can be concatenated with the help of boolean logic and smartly coned return statements. 
 If your program works but you find it awkward or overly complicated, try to combine some of the steps to make your code more readable.
 
