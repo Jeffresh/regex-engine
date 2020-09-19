@@ -5,7 +5,12 @@ def my_regex(pattern, input_string):
 def regex_engine(raw_input):
     split_pattern = '|'
     pattern, input_string = raw_input.split(split_pattern)
-    return engine(pattern, input_string)
+    if engine(pattern, input_string):
+        return True
+    elif input_string:
+        return regex_engine(pattern + '|' + input_string[1:])
+    else:
+        return False
 
 
 def engine(pattern, input_string):
