@@ -56,7 +56,7 @@ Some terminating conditions should be added to stop the function from entering i
 - If the regex has been entirely consumed, the function should return ```True``` since it means that all the characters in the regex-string
 pair are the same.
 - If the regex has not been consumed but the input string has, the function should return ```False``` since it means that the regex is
-longer thatn the input string, which is undefined behavior at this point.
+longer than the input string, which is undefined behavior at this point.
 - If the first character of the regex does not match the first character of the input string, the function should return ```False``` because it
 guarantees that the two patterns are different.
 
@@ -144,12 +144,12 @@ Input: 'peach|apple'     Output: False
 ### Description
 
 Regular expressions are useful and flexible because they include a set of metacharacters. So far, the only metacharacter
-we an handle is the wild char(.) Athough it is certainly yseful, our engine still lacks the flexibility we need.
+we an handle is the wild char(.) Although it is certainly useful, our engine still lacks the flexibility we need.
 
-Let's think of a case where we would want a pattern to match only if it happens in a certain part of the input strin, for example
+Let's think of a case where we would want a pattern to match only if it happens in a certain part of the input string, for example
 only the beginning or the end. Do you remember the example for the previous stage where we wanted to match only the nouns that end with the
-suffic ```tion```? That's exactly the case where we need the metacharacter ```$```. The regex ```tion$``` will match the string 
-```section``` but not ```sections````, even though ```tion``` is part of both strings.
+suffix ```tion```? That's exactly the case where we need the metacharacter ```$```. The regex ```tion$``` will match the string 
+```section``` but not ```sections```, even though ```tion``` is part of both strings.
 
 The metacharacter ```^``` is the opposite: it only matches a pattern if it is located ad the beginning of the input string. This
 way, the regex ```^be``` will match the strings ```beware````, ```become```, ```behind````, but not ```to be```, even
