@@ -1,5 +1,7 @@
 def my_regex(pattern, input_string):
-    return pattern == '' or (pattern == '.' and bool(input_string)) or pattern == input_string
+    return pattern == '' \
+           or (pattern == '.' and bool(input_string)) \
+           or (pattern == input_string)
 
 
 def regex_engine(raw_input):
@@ -27,6 +29,10 @@ def engine(pattern, input_string):
     else:
         if my_regex(pattern[0], input_string[0]):
             return engine(pattern[1:], input_string[1:])
+        elif pattern[0] == '?':
+            return engine(pattern[1:], input_string)
+        elif len(pattern) > 1 and pattern[1] == '?':
+            return engine(pattern[2:], input_string)
         else:
             return False
 
