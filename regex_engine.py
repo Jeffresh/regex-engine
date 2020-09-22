@@ -33,9 +33,10 @@ def engine(pattern, input_string):
             return engine(pattern[1:], input_string)
         elif pattern[0] == '*' and (len(input_string)) == 1:
             return engine(pattern[1:], input_string)
-        elif pattern[0] == '*' and (len(input_string) > 1 and input_string[0] == input_string[1]):
+        elif (pattern[0] == '*' or pattern[0] == '+') and (
+                len(input_string) > 1 and input_string[0] == input_string[1]):
             return engine(pattern, input_string[2:])
-        elif len(pattern) > 1 and (pattern[1] == '?' or pattern[1] == '*'):
+        elif len(pattern) > 1 and (pattern[1] == '?' or pattern[1] == '*' or pattern[0] == '+'):
             return engine(pattern[2:], input_string)
         else:
             return False
