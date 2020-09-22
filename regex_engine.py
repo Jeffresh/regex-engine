@@ -10,6 +10,18 @@ def equal_character(pattern, character):
     return pattern == character
 
 
+def process_string(pattern, string_):
+    if not pattern:
+        return True
+    elif string_:
+        if process_character(pattern[0], string_[0]):
+            return process_string(pattern[1:], string_[1:])
+        else:
+            return False
+    else:
+        return False
+
+
 def process_character(pattern_character, character):
     return dot_wildcard(pattern_character, character) \
            or equal_character(pattern_character, character) \
@@ -17,5 +29,5 @@ def process_character(pattern_character, character):
 
 
 if __name__ == '__main__':
-    character_1, character_2 = input().split("|")
-    print(process_character(character_1, character_2))
+    pattern, string_ = input().split("|")
+    print(process_string(pattern, string_))
