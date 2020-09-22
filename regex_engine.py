@@ -14,6 +14,8 @@ def regex_engine(pattern, string_):
     if not pattern:
         return True
     elif string_:
+        if pattern[0] == '^':
+            return process_same_len_strings(pattern[1:], string_)
         if process_same_len_strings(pattern, string_):
             return True
         else:
@@ -24,6 +26,8 @@ def regex_engine(pattern, string_):
 
 def process_same_len_strings(pattern, string_):
     if not pattern:
+        return True
+    if pattern[0] == '$' and not string_:
         return True
     elif string_:
         if process_character(pattern[0], string_[0]):
