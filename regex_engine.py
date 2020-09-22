@@ -10,11 +10,6 @@ def equal_character(pattern, character):
     return pattern == character
 
 
-def question_mark_wildcard(pattern, string_):
-    return process_same_len_strings(pattern[1:], string_) \
-           or process_same_len_strings(pattern[1:], string_[1:])
-
-
 def regex_engine(pattern, string_):
     if not pattern:
         return True
