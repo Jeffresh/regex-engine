@@ -10,6 +10,18 @@ def equal_character(pattern, character):
     return pattern == character
 
 
+def regex_engine(pattern, string_):
+    if not pattern:
+        return True
+    elif string_:
+        if process_same_len_strings(pattern, string_):
+            return True
+        else:
+            return regex_engine(pattern, string_[1:])
+    else:
+        return False
+
+
 def process_same_len_strings(pattern, string_):
     if not pattern:
         return True
@@ -30,4 +42,4 @@ def process_character(pattern_character, character):
 
 if __name__ == '__main__':
     pattern, string_ = input().split("|")
-    print(process_same_len_strings(pattern, string_))
+    print(regex_engine(pattern, string_))
