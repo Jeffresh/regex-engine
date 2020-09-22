@@ -10,12 +10,12 @@ def equal_character(pattern, character):
     return pattern == character
 
 
-def process_string(pattern, string_):
+def process_same_len_strings(pattern, string_):
     if not pattern:
         return True
     elif string_:
         if process_character(pattern[0], string_[0]):
-            return process_string(pattern[1:], string_[1:])
+            return process_same_len_strings(pattern[1:], string_[1:])
         else:
             return False
     else:
@@ -30,4 +30,4 @@ def process_character(pattern_character, character):
 
 if __name__ == '__main__':
     pattern, string_ = input().split("|")
-    print(process_string(pattern, string_))
+    print(process_same_len_strings(pattern, string_))
