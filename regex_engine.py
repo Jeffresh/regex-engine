@@ -10,6 +10,11 @@ def equal_character(pattern, character):
     return pattern == character
 
 
+def question_mark_wildcard(pattern, string_):
+    return process_same_len_strings(pattern[1:], string_) \
+           or process_same_len_strings(pattern[1:], string_[1:])
+
+
 def regex_engine(pattern, string_):
     if not pattern:
         return True
@@ -29,9 +34,17 @@ def process_same_len_strings(pattern, string_):
         return True
     if pattern[0] == '$' and not string_:
         return True
+    if pattern[0] == '?':
+        return process_same_len_strings(pattern[1:], string_)
+    if (pattern[0] == '*' or pattern[0] == '+') and string_[0:1] == string_[1:2]:
+        return process_same_len_strings(pattern, string_[1:])
+    if pattern[0] == '*' or pattern[0] == '+':
+        return process_same_len_strings(pattern[1:], string_[1:]) or process_same_len_strings(pattern[1:], string_)
     elif string_:
         if process_character(pattern[0], string_[0]):
             return process_same_len_strings(pattern[1:], string_[1:])
+        elif pattern[1:2] == '?' or pattern[1:2] == '*':
+            return process_same_len_strings(pattern[2:], string_)
         else:
             return False
     else:
