@@ -29,6 +29,12 @@ def process_same_len_strings(pattern, string_):
         return True
     if pattern[0] == '$' and not string_:
         return True
+    if pattern[0:1] == '\\' and pattern[1:2] == '\\':
+        return process_same_len_strings(pattern[2:], string_)
+    if pattern[0:1] == '\\' and pattern[1:2] in '^.?*+$':
+        string_ = string_.replace(pattern[1:2], 'a')
+        pattern = pattern.replace(pattern[1:2], 'a')
+        return process_same_len_strings(pattern[1:], string_)
     if pattern[0] == '?':
         return process_same_len_strings(pattern[1:], string_)
     if (pattern[0] == '*' or pattern[0] == '+') and string_[0:1] == string_[1:2]:
